@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color:#4CAF50;
+}
+.board {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.saikoro {
+    gap: 50px;
+    position: absolute;
+    top: 0;  /* 上端に配置 */
+    left: 50%;  /* 横方向に中央 */
+    transform: translateX(-50%);
+    font-size: 0px;
+}
+.button#bb {
+    height: 500px;
+    position: absolute;
+    left: 50%;  /* 横方向に中央 */
+    transform: translateX(-50%);
+    font-size: 0px;
+}
+.button#reset {
+    position: absolute;
+    top: 0px;
+    right: -70px;
+
+}
+/* テキストボックスのスタイル */
+input[type="text"] {
+    width: 230px;
+    height: 100px;
+    padding: 30px;
+    font-size: 16px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* テキストボックスにフォーカスした時のスタイル */
+input[type="text"]:focus {
+    border-color: #4CAF50; /* フォーカス時に緑色の枠 */
+    outline: none;
+}
+.txt{
+    width: 100px;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.glowing {
+    animation: glow-animation 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow-animation {
+    0% {
+        box-shadow: 0 0 5px 2px rgb(255 0 0);
+    }
+    100% {
+        box-shadow: 0 0 20px 10px rgb(255 0 0 );
+    }
+}
