@@ -1,0 +1,103 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<script>
+let currentPosition = 0; // 現在のマスの位置を記録 (0 ～ 20)
+
+function Saikoro() {
+    let saikoro = Math.floor(Math.random() * 6) + 1; // ランダムで1～6の数字を作ります
+    document.getElementById("kekka").innerHTML = saikoro; // 結果をid="kekka"に表示します
+    document.getElementById("sainome").src = saikoro + ".jpg"; // 画像をid="sainome"に表示します
+
+    // サイコロを振って進むマスの位置を計算
+    currentPosition += saikoro;
+    if (currentPosition > 20) {
+        currentPosition = 20; // 最大20マスまで
+    }
+
+    // すべてのテキストボックスをリセット
+    const allInputs = document.querySelectorAll('.txt');
+    allInputs.forEach(input => input.classList.remove('glowing')); // 光らせるクラスを削除
+
+    // 進んだマスの位置に対応するテキストボックスを光らせる
+    const targetInput = document.querySelectorAll('.txt')[currentPosition];
+    if (targetInput) {
+        targetInput.classList.add('glowing'); // 光らせるクラスを追加
+    }
+}
+
+function resetGame() {
+    // 現在の位置をリセット
+    currentPosition = 0;
+
+    // すべてのテキストボックスをリセット
+    const allInputs = document.querySelectorAll('.txt');
+    allInputs.forEach(input => input.classList.remove('glowing')); // 光らせるクラスを削除
+
+    // 結果をリセット
+    document.getElementById("kekka").innerHTML = ""; // サイコロの結果をクリア
+    document.getElementById("sainome").src = "1.jpg"; // 画像を初期状態に戻す
+}
+
+window.addEventListener("load",loadFunc,false);
+
+ function loadFunc() {
+	var canvas = document.getElementById("stage");
+	var ctx = canvas.getContext("2d");
+
+	ctx.beginPath();
+    ctx.moveTo( 100, 100 );
+    ctx.lineTo( 400, 400 );
+    ctx.closePath();
+    ctx.stroke();
+
+	ctx.lineWidth = 5;
+    ctx.strokeStyle = "#88000";
+    ctx.stroke();
+ }
+</script>
+<body>
+<div class="saikoro">
+	<img id="sainome" src="1.jpg" width="220" height="220">
+	<div class="button" id="bb">
+		<p><button onclick="Saikoro();">サイコロを振る</button></p>
+		<p id="kekka"></p>
+	</div>
+	<div class="button" id="reset">
+		<p><button onclick="resetGame();">リセット</button></p>
+	</div>
+</div>
+<div class="board">
+	<div class="row">
+		<input type="text" class="txt" placeholder="スタート！">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+	</div>
+	<div class="row">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+	</div>
+	<div class="row">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="">
+		<input type="text" class="txt" placeholder="ゴール！">
+	</div>
+</div>
+</body>
+</html>
